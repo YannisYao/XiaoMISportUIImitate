@@ -18,11 +18,14 @@ import android.view.View;
 
 public class XiaoMISportConnectView extends View {
     private final static int CIRCLE_WID = 2;
-    private final static int CIRCLE_MARGIN_LEFT = 200;
+    private final static int CIRCLE_MARGIN_LEFT = 250;
+    private final static int CIRCLE_COUNT = 8;
     //扫描渐变圆环画笔
     private Paint circlePaint;
     //背景图
     private Bitmap backgroudBitmap;
+
+    private int[][] circlesMatrix = {{-15,10},{-10,10},{-5,10},{0,10},{0,-10},{5,-10},{10,-10},{15,-10}};
 
     public XiaoMISportConnectView(Context context) {
         super(context);
@@ -78,6 +81,8 @@ public class XiaoMISportConnectView extends View {
         int centerX = getWidth()/2;
         int centerY = getHeight()/2;
         int tempRaduis = getWidth()/2 - CIRCLE_MARGIN_LEFT;
-        canvas.drawCircle(centerX,centerY,tempRaduis,circlePaint);
+        for(int i = 0 ; i < CIRCLE_COUNT ; i ++){
+            canvas.drawCircle(centerX+circlesMatrix[i][0],centerY+circlesMatrix[i][0],tempRaduis+circlesMatrix[i][1],circlePaint);
+        }
     }
 }
